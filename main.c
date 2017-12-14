@@ -17,21 +17,27 @@ int main(void){
     deplacer(&p);
     printf("%d %d \n", p.cor.x, p.cor.y);
     initPions();
-    for(i = 0 ; i < 24; i++){
-        printf("joueur %d type %c taille %d id %d \n", tabP[i].joueur.numero, tabP[i].type, tabP[i].taille, tabP[i].id);
-    }
+
     placerPions();
     for(i = 0; i < 24; i++){
       printf("Pions numero %d,coordonnes : x %d, y %d\n", tabP[i].id,
       tabP[i].cor.x, tabP[i].cor.y);
 
-  }*/
+  }
   coordonnees corVide;
   coordonnees corPleine;
   corVide.x = 0;
-  corVide.y = 1;
-  corPleine.x = 1;
+  corVide.y = 0;
+  corPleine.x = 0;
   corPleine.y = 2;
-  printf("Distance %d \n", distance(corVide, corPleine));
+  printf("Distance %d \n", distance(corVide, corPleine));*/
+  initialiserPartie();
+  pions test;
+  coordonnees corTest = {2, 3};
+  test = tabP[10];
+  printf("%d %d \n", tabP[10].cor.x, tabP[10].cor.y);
+  printf("Taille de tabP[10] = %d, Saut possible : %d \n",tabP[10].taille, sautPossible(&test, corTest));
+
+
   return 0;
 }

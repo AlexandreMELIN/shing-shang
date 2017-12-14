@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-char plateau[10][10];
-
 typedef struct coordonnees{
   int x;
   int y;
@@ -22,7 +20,12 @@ typedef struct pions{
   int id; //permet d'identifier le pion
 } pions;
 
+
+char plateau[10][10];
 pions tabP[24];
+
+
+
 void setUpPions(pions *p, int type, int joueur, int id);
 void initPions();
 void setCoordonnes(pions *p, int x, int y);
@@ -37,3 +40,5 @@ int caseVide(coordonnees cor);
 int distance(coordonnees depart, coordonnees arrive);
 coordonnees getOldPos(coordonnees depart);
 void actualiserPlateau(coordonnees oldPos, pions *p);
+int getId(coordonnees cor);
+int sautPossible(pions *p, coordonnees arrive);

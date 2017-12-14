@@ -1,6 +1,6 @@
 #include "header.h"
 
-void setUpPions(pions *p, int type, int joueur, int id){
+void setUpPions(pions *p, int type, int joueur, int id){//creer les pions
   p->id = id;
   if(type == 1){
     p->taille = 3;
@@ -19,7 +19,7 @@ void setUpPions(pions *p, int type, int joueur, int id){
   }
 }
 
-void initPions(){
+void initPions(){//initialise les pions
     int i;
     for(i = 0; i < 6; i++){
         setUpPions(&tabP[i], 3, 1, i);
@@ -35,7 +35,7 @@ void initPions(){
     }
 }
 
-int estUnPion(coordonnees *cor){
+int estUnPion(coordonnees *cor){//permet de determiner si les coordonnees rentres designent un pion
   int aRetourner = 0;
   int x = cor->x;
   int y = cor->y;
@@ -44,7 +44,7 @@ int estUnPion(coordonnees *cor){
   return aRetourner;
 }
 
-void setCoordonnes(pions *p, int x, int y){
+void setCoordonnes(pions *p, int x, int y){//permet de définir les coordonnées d'un pion
   p->cor.x = x;
   p->cor.y = y;
 }
@@ -162,4 +162,31 @@ void placerPions(){
       }
     }
   }
+}
+
+int sautPossible(pions *p, coordonnees arrive){//permet de savoir si un saut est possible (1 = possible, 0 = impossible)
+    int aRetourner = 0;
+    int id;
+    coordonnees entreDeux; //designe les coordonnées du pion entre la case d'arrivee et le pion selectionne
+    pions saute;
+    if(distance(p->cor, arrive) == 2){ // on regarde si le deplacement necessite un saut et s'il set possible
+        entreDeux.x = (arrive.x + p->cor.x) / 2;
+        entreDeux.y = (arrive.y + p->cor.y) / 2;
+        if(estUnPion(&entreDeux) == 1){ // on regarde s'il y a un pion entre la case de depart et celle d'arrive
+           id = getId(entreDeux);
+           if(p->taille >= tabP[id].taille) //on verifie le droit de sauter
+                aRetourner = 1;
+        }
+    }
+    return aRetourner;
+}
+
+int getId(coordonnees cor){//permet de trouver l'id d'un pion, soit sa place dans le tableau
+    int aRetourner;
+    int i = 0;
+    while((tabP[i].cor.x != cor.x  || tabP[i].cor.y != cor.y) && i < 24)
+        i++;
+    if(i < 24)
+        aRetourner = i;
+    return aRetourner;
 }
