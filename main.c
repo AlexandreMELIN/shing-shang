@@ -37,7 +37,8 @@ int main(void){
   test = tabP[10];
   printf("%d %d \n", tabP[10].cor.x, tabP[10].cor.y);
   printf("Taille de tabP[10] = %d, Saut possible : %d \n",tabP[10].taille, sautPossible(&test, corTest));
-
+  actualiserPion(tabP[10].cor, corTest);
+  printf("Nouvelles coordonnes x :%d, y : %d", tabP[10].cor.x, tabP[10].cor.y);
 
   return 0;
 }

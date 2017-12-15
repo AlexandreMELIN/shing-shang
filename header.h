@@ -42,3 +42,6 @@ coordonnees getOldPos(coordonnees depart);
 void actualiserPlateau(coordonnees oldPos, pions *p);
 int getId(coordonnees cor);
 int sautPossible(pions *p, coordonnees arrive);
+void demande_coord(coordonnees *depart);
+int est_dans_plateau(coordonnees* arrive);
+void actualiserPion(coordonnees depart, coordonnees arrive);

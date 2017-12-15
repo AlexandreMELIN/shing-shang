@@ -190,3 +190,27 @@ int getId(coordonnees cor){//permet de trouver l'id d'un pion, soit sa place dan
         aRetourner = i;
     return aRetourner;
 }
+
+void demande_coord(coordonnees *depart){
+    depart->x = 0;
+    depart->y = 0;
+    printf("Coord de départ:");
+    scanf("%d%d",&depart->x,&depart->y);
+}
+int est_dans_plateau(coordonnees* arrive){
+    int valide;
+    if ((arrive->x >= 0 && arrive->x <= 9) && (arrive->y >= 1 && arrive->y <= 8)){
+        valide=1;
+    }
+    else if ((arrive->x==0 && (arrive->y==4 || arrive->y==5)) || (arrive->x==9 && (arrive->y==4 || arrive->y==5))){
+            valide=1;
+        }else{
+            valide=0;
+        }
+    return valide;
+}
+void actualiserPion(coordonnees depart, coordonnees arrive){//actualise les coordonnées d'un pion dans le tableau
+    int id = getId(depart);
+    tabP[id].cor.x = arrive.x;
+    tabP[id].cor.y = arrive.y;
+}
